@@ -76,7 +76,7 @@ Delivery creation and status tracking (upcoming)
 Loyalty points system for drivers (upcoming)
 
 Team Members
-[adam kadri]
+[Adam Kadri]
 [hadi rhimi]
 [charbel kassouf]
 [jad kassouf]
