@@ -1,61 +1,86 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Delivery App Project
+Project Overview
+Delivery App is a Laravel-based application that allows clients to create delivery requests, drivers to manage deliveries, and admins to oversee the entire delivery operation.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Setup Instructions
+Clone the repository
+```bash
+git clone https://github.com/friend-username/repo-name.git
+Navigate to the project folder
+bash
+Copy
+Edit
+cd repo-name
+Create your .env file
+Copy the example .env file and update your local credentials:
 
-## About Laravel
+bash
+Copy
+Edit
+cp .env.example .env
+Install PHP dependencies
+bash
+Copy
+Edit
+composer install
+Install Node.js dependencies
+bash
+Copy
+Edit
+npm install
+Build frontend assets
+bash
+Copy
+Edit
+npm run dev
+Generate the application key
+bash
+Copy
+Edit
+php artisan key:generate
+Set up your database
+Create a new database (e.g., deliverydb) in your local MySQL server.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Update your .env file database section if necessary.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Then run the migrations:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+bash
+Copy
+Edit
+php artisan migrate
+Serve the application
+bash
+Copy
+Edit
+php artisan serve
+Important Notes
+Email Verification:
+After registering, users must verify their email address before accessing the dashboard.
 
-## Learning Laravel
+Mailtrap SMTP:
+Each developer should create their own free Mailtrap.io account and update the SMTP credentials inside their .env file.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+User Roles:
+Users can register as Clients or Drivers during registration. Admins are manually managed.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Project Features (Phase 1)
+Client registration, login, and email verification
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Driver registration with vehicle details
 
-## Laravel Sponsors
+Admin management of drivers and deliveries (upcoming)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Delivery creation and status tracking (upcoming)
 
-### Premium Partners
+Loyalty points system for drivers (upcoming)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+Team Members
+[adam kadri]
+[hadi rhimi]
+[charbel kassouf]
+[jad kassouf]
+[goerge mousally]
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+License
+This project is open-sourced under the MIT License
