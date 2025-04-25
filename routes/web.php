@@ -41,3 +41,7 @@ Route::middleware(['auth', 'verified'])->prefix('client')->name('client.')->grou
 Route::get('/dashboard', function () {
     return redirect()->route('client.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/driver', function () {
+    return view('driver.dashboard');
+});
