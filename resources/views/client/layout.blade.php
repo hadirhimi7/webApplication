@@ -5,10 +5,13 @@
     <title>Client Dashboard</title>
     @vite('resources/css/app.css') <!-- TailwindCSS load -->
 </head>
-<body class="flex min-h-screen bg-gray-100">
+<body class="bg-gray-100">
+
+<!-- Container for sidebar + main -->
+<div class="flex min-h-screen">
 
     <!-- Sidebar -->
-    <aside class="w-64 bg-gray-800 text-white flex flex-col p-6">
+    <aside class="fixed top-0 left-0 h-screen w-64 bg-gray-800 text-white flex flex-col p-6">
         <h1 class="text-2xl font-bold mb-8">Delivery App</h1>
 
         <nav class="flex flex-col space-y-4">
@@ -25,9 +28,11 @@
     </aside>
 
     <!-- Main Content -->
-    <main class="flex-1 p-10">
+    <main class="ml-64 flex-1 p-10">
         @yield('content')
     </main>
+
+</div>
 
 </body>
 </html>

@@ -1,10 +1,10 @@
 @extends('driver.layout')
 
 @section('content')
-    <h1 class="text-3xl font-bold mb-6 text-gray-800">Assigned Delivery Requests</h1>
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Completed Deliveries</h1>
 
     @if($deliveries->isEmpty())
-        <p class="text-gray-600">You don't have any assigned deliveries yet.</p>
+        <p class="text-gray-600">You have not completed any deliveries yet.</p>
     @else
         <div class="bg-white rounded shadow overflow-x-auto">
             <table class="min-w-full text-left text-sm text-gray-700">
@@ -25,7 +25,7 @@
                         <td class="py-3 px-6 text-left">{{ $delivery->client->email ?? 'N/A' }}</td>
                         <td class="py-3 px-6 text-left">{{ $delivery->pickup_location }}</td>
                         <td class="py-3 px-6 text-left">{{ $delivery->dropoff_location }}</td>
-                        <td class="py-3 px-6 text-left">{{ $delivery->status }}</td>
+                        <td class="py-3 px-6 text-left text-green-600">{{ $delivery->status }}</td>
                         <td class="py-3 px-6 text-left">{{ $delivery->price ?? '0.00' }}</td>
                     </tr>
                 @endforeach

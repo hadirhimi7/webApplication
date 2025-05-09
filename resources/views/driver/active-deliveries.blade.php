@@ -1,10 +1,10 @@
 @extends('driver.layout')
 
 @section('content')
-    <h1 class="text-3xl font-bold mb-6 text-gray-800">Assigned Delivery Requests</h1>
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Deliveries In Progress</h1>
 
     @if($deliveries->isEmpty())
-        <p class="text-gray-600">You don't have any assigned deliveries yet.</p>
+        <p class="text-gray-600">No deliveries are currently in progress.</p>
     @else
         <div class="bg-white rounded shadow overflow-x-auto">
             <table class="min-w-full text-left text-sm text-gray-700">

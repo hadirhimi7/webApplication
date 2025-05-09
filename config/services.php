@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'distance_matrix' => [
+        'url' => env('DISTANCE_API_URL'),
+        'key' => env('DISTANCE_API_KEY'),
+    ],
+
+
 ];
