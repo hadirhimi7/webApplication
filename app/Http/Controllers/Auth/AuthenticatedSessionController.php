@@ -24,11 +24,22 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        // Attempt authentication
         $request->authenticate();
 
+        // Regenerate session to prevent session fixation
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // Get the authenticated user
+        $user = $request->user();
+
+        // Redirect based on role
+        if ($user->role === 'driver') {
+            return redirect()->route('driver.dashboard'); // Route name must match your driver route
+        }
+
+        // Default: redirect to client dashboard
+        return redirect()->route('client.dashboard');
     }
 
     /**
