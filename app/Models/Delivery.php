@@ -4,6 +4,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Delivery extends Model
 {
     use HasFactory;
@@ -22,4 +23,10 @@ class Delivery extends Model
         'price',
         'scheduled_date',
     ];
+    public function client()
+    {
+        return $this->belongsTo(User::class, 'client_id');
+    }
+
+
 }

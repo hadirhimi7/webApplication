@@ -41,7 +41,7 @@ class RegisteredUserController extends Controller
             'pricing_model' => ['required_if:role,driver', 'in:fixed,per_km', 'nullable'],
         ]);
 
-        
+
 
         // Create the user
         $user = User::create([
@@ -66,6 +66,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect()->route('login')->with('success', 'Account created successfully. Please log in.');
     }
 }
