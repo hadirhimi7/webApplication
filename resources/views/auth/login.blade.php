@@ -6,6 +6,19 @@
                 <p class="mt-2 text-sm text-gray-500">Please sign in to your account</p>
             </div>
 
+            <!-- Display any session errors (Access Denied message) -->
+            @if ($errors->any())
+                <div class="mb-4">
+                    <div class="text-red-500 text-sm">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
+
             <form method="POST" action="{{ route('login') }}" class="space-y-6">
                 @csrf
 

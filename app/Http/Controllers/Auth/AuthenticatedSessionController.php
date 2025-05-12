@@ -11,46 +11,41 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
+   
     public function create(): View
     {
         return view('auth.login');
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
-    public function store(LoginRequest $request): RedirectResponse
-    {
-        // Attempt authentication
-        $request->authenticate();
-
-        // Regenerate session to prevent session fixation
-        $request->session()->regenerate();
-
-        // Get the authenticated user
-        $user = $request->user();
-
-        // Redirect based on role
-        if ($user->role === 'driver') {
-            return redirect()->route('driver.dashboard'); // Route name must match your driver route
-        }
-
-        // Default: redirect to client dashboard
-        return redirect()->route('client.dashboard');
+   
+  
+   public function store(LoginRequest $request): RedirectResponse
+{
+    
+    if ($request->email === 'admin@admin.com' && $request->password === 'admin1234') {
+        $request->session()->put('is_admin', true);
+        return redirect()->route('admin.dashboard');
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
+    
+    $request->authenticate();
+    $request->session()->regenerate();
+
+    $user = $request->user();
+
+    if ($user->role === 'driver') {
+        return redirect()->route('driver.dashboard');
+    }
+
+    return redirect()->route('client.dashboard');
+}
+    
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
 
+        $request->session()->forget('is_admin'); 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/');

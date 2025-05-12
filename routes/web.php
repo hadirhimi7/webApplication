@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClientDashboardController;
 use App\Http\Controllers\DriverDashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 
 // Homepage
@@ -20,29 +21,20 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// --------------------
 // CLIENT ROUTES
-// --------------------
-Route::middleware(['auth', 'verified'])->prefix('client')->name('client.')->group(function () {
+Route::prefix('client')->name('client.')->group(function () {
     Route::get('/dashboard', [ClientDashboardController::class, 'dashboard'])->name('dashboard');
-    // In web.php (you already have this, but double-check)
     Route::get('/create-delivery', [ClientDashboardController::class, 'createDelivery'])->name('createDelivery');
-    //Route::get('/create-delivery', [ClientDashboardController::class, 'createDelivery'])->name('createDelivery');
-    //Route::get('/browse-drivers', [ClientDashboardController::class, 'browseDrivers'])->name('client.browseDrivers');
     Route::get('/browse-drivers/{delivery?}', [ClientDashboardController::class, 'browseDrivers'])->name('browseDrivers');
-
     Route::get('/my-deliveries', [ClientDashboardController::class, 'myDeliveries'])->name('myDeliveries');
     Route::post('/create-delivery', [ClientDashboardController::class, 'storeDelivery'])->name('storeDelivery');
     Route::get('/assign-driver/{delivery}', [ClientDashboardController::class, 'assignDriverForm'])->name('assignDriverForm');
     Route::post('/assign-driver/{delivery}', [ClientDashboardController::class, 'assignDriver'])->name('assignDriver');
     Route::post('/update-location', [ClientDashboardController::class, 'updateLocation'])->name('updateLocation');
+});
 
-}); // ✅ properly closed client group
-
-// --------------------
 // DRIVER ROUTES
-// --------------------
-Route::middleware(['auth', 'verified'])->prefix('driver')->name('driver.')->group(function () {
+Route::prefix('driver')->name('driver.')->group(function () {
     Route::get('/dashboard', [DriverDashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/active-deliveries', [DriverDashboardController::class, 'inProgressDeliveries'])->name('activeDeliveries');
     Route::get('/delivery-history', [DriverDashboardController::class, 'deliveryHistory'])->name('deliveryHistory');
@@ -58,6 +50,13 @@ Route::middleware(['auth', 'verified'])->prefix('driver')->name('driver.')->grou
     Route::get('/delivery/{delivery}', [DriverDashboardController::class, 'showDelivery'])->name('showDelivery');
     Route::patch('/delivery/{delivery}/status', [DriverDashboardController::class, 'updateDeliveryStatus'])->name('updateDeliveryStatus');
     Route::post('/update-location', [DriverDashboardController::class, 'updateLocation'])->name('updateLocation');
+});
 
-
+// ADMIN ROUTES 
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('/manage-drivers', [AdminDashboardController::class, 'manageDrivers'])->name('manageDrivers');
+    Route::post('/update-driver-status/{driver}/{status}', [AdminDashboardController::class, 'updateDriverStatus'])->name('updateDriverStatus');
+    Route::get('/deliveries', [AdminDashboardController::class, 'deliveries'])->name('deliveries');
+    Route::get('/deliveries/{id}', [AdminDashboardController::class, 'viewDelivery'])->name('viewDelivery');
 });
